@@ -15,6 +15,9 @@ public class FluxoPedidoService {
     @Autowired
     private EmissaoPedidoService emissaoPedidoService;
 
+    @Autowired
+    private EnvioEmailService envioEmailService;
+
     @Transactional
     public void confirmar(String codigoPedido) {
         Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);
@@ -29,6 +32,14 @@ public class FluxoPedidoService {
 
         pedido.setStatus(StatusPedido.CONFIRMADO);
         pedido.setDataConfirmacao(OffsetDateTime.now());
+
+        var mensagem = EnvioEmailService.Mensagem.builder()
+                .assunto(pedido.getRestaurante().getNome() + " - Pedido confirmado")
+                .corpo("pedido-confirmado.html")
+                .variavel("pedido", pedido)
+                .destinatario(pedido.getCliente().getEmail())
+                .build();
+        envioEmailService.enviar(mensagem);
     }
 
     @Transactional
@@ -59,6 +70,15 @@ public class FluxoPedidoService {
 
         pedido.setStatus(StatusPedido.CANCELADO);
         pedido.setDataCancelamento(OffsetDateTime.now());
+
+        var mensagem = EnvioEmailService.Mensagem.builder()
+                .assunto(pedido.getRestaurante().getNome() + " - Pedido cancelado")
+                .corpo("pedido-cancelado.html")
+                .variavel("pedido", pedido)
+                .destinatario(pedido.getCliente().getEmail())
+                .build();
+
+        envioEmailService.enviar(mensagem);
     }
 
 }

@@ -84,7 +84,7 @@ INSERT IGNORE INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 3);
 
 -- Usuário
 INSERT IGNORE INTO usuario (id, nome, email, senha, data_cadastro) VALUES
-(1, 'Augusto Iseppe', 'augusto@algafood.com', '123456', utc_timestamp);
+(1, 'Augusto Iseppe', 'balanaib92@gmail.com', '123456', utc_timestamp);
 
 insert into usuario (id, nome, email, senha, data_cadastro) values
 (2, 'João da Silva', 'joao.ger@algafood.com', '123', utc_timestamp),
@@ -138,11 +138,11 @@ INSERT INTO restaurante_usuario_responsavel (restaurante_id, usuario_id) VALUES 
 insert into pedido (id, codigo, restaurante_id, usuario_cliente_id, forma_pagamento_id, endereco_cidade_id, endereco_cep,
     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
     status, data_criacao, subtotal, taxa_frete, valor_total)
-values (1, '5c4be282-46cc-11f0-a919-74563c3a280c', 1, 1, 1, 1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil',
-'CRIADO', utc_timestamp, 298.90, 10, 308.90);
+values (1, '5c4be282-46cc-11f0-a919-74563c3a280c', 1, 1, 1, 1, '13634-503', 'Rua João Batista Levi', '1527', 'Jardim Europa', 'Brasil',
+'CRIADO', utc_timestamp, 298.90, 10, 79.80);
 
 insert into item_pedido (id, pedido_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
-values (1, 1, 2, 2, 110, 220, 'Menos picante, por favor');
+values (1, 1, 2, 2, 34.90, 69.80, 'Menos picante, por favor');
 
 
 

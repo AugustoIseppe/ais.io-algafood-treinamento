@@ -51,6 +51,32 @@ insert ignore into cozinha (id, nome) values (12, 'Francesa');
 -- Estados
 INSERT IGNORE INTO estado (id, nome) VALUES (1, 'São Paulo');
 INSERT IGNORE INTO estado (id, nome) VALUES (2, 'Rio de Janeiro');
+INSERT IGNORE INTO estado (id, nome) VALUES (3, 'Acre');
+INSERT IGNORE INTO estado (id, nome) VALUES (4, 'Alagoas');
+INSERT IGNORE INTO estado (id, nome) VALUES (5, 'Amapá');
+INSERT IGNORE INTO estado (id, nome) VALUES (6, 'Amazonas');
+INSERT IGNORE INTO estado (id, nome) VALUES (7, 'Bahia');
+INSERT IGNORE INTO estado (id, nome) VALUES (8, 'Ceará');
+INSERT IGNORE INTO estado (id, nome) VALUES (9, 'Distrito Federal');
+INSERT IGNORE INTO estado (id, nome) VALUES (10, 'Espírito Santo');
+INSERT IGNORE INTO estado (id, nome) VALUES (11, 'Goiás');
+INSERT IGNORE INTO estado (id, nome) VALUES (12, 'Maranhão');
+INSERT IGNORE INTO estado (id, nome) VALUES (13, 'Mato Grosso');
+INSERT IGNORE INTO estado (id, nome) VALUES (14, 'Mato Grosso do Sul');
+INSERT IGNORE INTO estado (id, nome) VALUES (15, 'Minas Gerais');
+INSERT IGNORE INTO estado (id, nome) VALUES (16, 'Pará');
+INSERT IGNORE INTO estado (id, nome) VALUES (17, 'Paraíba');
+INSERT IGNORE INTO estado (id, nome) VALUES (18, 'Paraná');
+INSERT IGNORE INTO estado (id, nome) VALUES (19, 'Pernambuco');
+INSERT IGNORE INTO estado (id, nome) VALUES (20, 'Piauí');
+INSERT IGNORE INTO estado (id, nome) VALUES (21, 'Rio Grande do Norte');
+INSERT IGNORE INTO estado (id, nome) VALUES (22, 'Rio Grande do Sul');
+INSERT IGNORE INTO estado (id, nome) VALUES (23, 'Rondônia');
+INSERT IGNORE INTO estado (id, nome) VALUES (24, 'Roraima');
+INSERT IGNORE INTO estado (id, nome) VALUES (25, 'Santa Catarina');
+INSERT IGNORE INTO estado (id, nome) VALUES (26, 'Sergipe');
+INSERT IGNORE INTO estado (id, nome) VALUES (27, 'Tocantins');
+
 
 -- Cidades
 INSERT IGNORE INTO cidade (id, nome, estado_id) VALUES (1, 'Pirassununga', 1);

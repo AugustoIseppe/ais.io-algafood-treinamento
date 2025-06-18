@@ -17,8 +17,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,10 +44,7 @@ public class CidadeController {
             description = "Retorna uma lista de todas as cidades cadastradas")
     public CollectionModel<CidadeModel> listar() {
         List<Cidade> todasCidades = cidadeRepository.findAll();
-
-      return cidadeModelAssembler.toCollectionModel(todasCidades);
-
-
+        return cidadeModelAssembler.toCollectionModel(todasCidades);
     }
 
     @GetMapping("/{cidadeId}")

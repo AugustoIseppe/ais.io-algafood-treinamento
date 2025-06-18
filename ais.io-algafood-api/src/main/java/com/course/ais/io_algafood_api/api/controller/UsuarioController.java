@@ -11,6 +11,7 @@ import com.course.ais.io_algafood_api.domain.repository.UsuarioRepository;
 import com.course.ais.io_algafood_api.domain.service.CadastroUsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +34,9 @@ public class UsuarioController {
     private UsuarioInputDisassembler usuarioInputDisassembler;
 
     @GetMapping
-    public List<UsuarioModel> listar() {
-        List<Usuario> todasUsuarios = usuarioRepository.findAll();
-
-        return usuarioModelAssembler.toCollectionModel(todasUsuarios);
+    public CollectionModel<UsuarioModel> listar() {
+        List<Usuario> todosUsuarios = usuarioRepository.findAll();
+        return usuarioModelAssembler.toCollectionModel(todosUsuarios);
     }
 
     @GetMapping("/{usuarioId}")

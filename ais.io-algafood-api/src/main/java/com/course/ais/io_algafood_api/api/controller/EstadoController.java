@@ -9,9 +9,11 @@ import com.course.ais.io_algafood_api.domain.repository.EstadoRepository;
 import com.course.ais.io_algafood_api.domain.service.CadastroEstadoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -31,7 +33,7 @@ public class EstadoController {
     private EstadoInputDisassembler estadoInputDisassembler;
 
     @GetMapping
-    public List<EstadoModel> listar() {
+    public CollectionModel<EstadoModel> listar() {
         List<Estado> todosEstados = estadoRepository.findAll();
 
         return estadoModelAssembler.toCollectionModel(todosEstados);

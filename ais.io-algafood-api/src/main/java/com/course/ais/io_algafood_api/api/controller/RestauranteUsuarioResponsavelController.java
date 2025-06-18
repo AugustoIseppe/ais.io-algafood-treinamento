@@ -5,10 +5,10 @@ import com.course.ais.io_algafood_api.api.model.dto.output.UsuarioModel;
 import com.course.ais.io_algafood_api.domain.model.Restaurante;
 import com.course.ais.io_algafood_api.domain.service.CadastroRestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/restaurantes/{restauranteId}/responsaveis")
@@ -21,10 +21,13 @@ public class RestauranteUsuarioResponsavelController {
     private UsuarioModelAssembler usuarioModelAssembler;
 
     @GetMapping
-    public List<UsuarioModel> listar(@PathVariable Long restauranteId) {
+    public CollectionModel<UsuarioModel> listar(@PathVariable Long restauranteId) {
         Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
 
-        return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());
+        return usuarioModelAssembler
+                .toCollectionModel(restaurante.getResponsaveis())
+                .removeLinks()
+                .add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RestauranteUsuarioResponsavelController.class).listar(restauranteId)).withSelfRel());
     }
 
     @DeleteMapping("/{usuarioId}")

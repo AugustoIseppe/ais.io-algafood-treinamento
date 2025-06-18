@@ -16,8 +16,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -40,16 +44,17 @@ public class CidadeController {
     @GetMapping
     @Operation(summary = "Lista todas as cidades",
             description = "Retorna uma lista de todas as cidades cadastradas")
-    public List<CidadeModel> listar() {
+    public CollectionModel<CidadeModel> listar() {
         List<Cidade> todasCidades = cidadeRepository.findAll();
 
-        return cidadeModelAssembler.toCollectionModel(todasCidades);
+      return cidadeModelAssembler.toCollectionModel(todasCidades);
+
+
     }
 
     @GetMapping("/{cidadeId}")
     public CidadeModel buscar(@PathVariable Long cidadeId) {
         Cidade cidade = cadastroCidadeService.buscarOuFalhar(cidadeId);
-
         return cidadeModelAssembler.toModel(cidade);
     }
 
@@ -58,8 +63,8 @@ public class CidadeController {
     @Operation(summary = "Adiciona uma nova cidade",
             description = "Cria uma nova cidade com os dados fornecidos")
     @ApiResponses({
-            @ApiResponse(responseCode = "201",description = "Cidade criada com sucesso"),
-            @ApiResponse(responseCode = "400",description = "Dados inválidos ou incompletos"),
+            @ApiResponse(responseCode = "201", description = "Cidade criada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos ou incompletos"),
     })
     public CidadeModel adicionar(@RequestBody @Valid CidadeInput cidadeInput) {
         try {

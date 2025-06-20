@@ -72,7 +72,7 @@ public class PedidoController {
 
             // TODO pegar usuário autenticado
             novoPedido.setCliente(new Usuario());
-            novoPedido.getCliente().setId(1L);
+            novoPedido.getCliente().setId(2L);
 
             novoPedido = emissaoPedido.emitir(novoPedido);
 

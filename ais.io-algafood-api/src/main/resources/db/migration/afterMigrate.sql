@@ -112,10 +112,10 @@ INSERT IGNORE INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 3);
 
 -- Usuário
 INSERT IGNORE INTO usuario (id, nome, email, senha, data_cadastro) VALUES
-(1, 'Augusto Iseppe', 'balanaib92@gmail.com', '123456', utc_timestamp);
+(1, 'Augusto Iseppe', 'balanaib92@gmail.com', '$2a$10$rGwQy1/TxoXgEcvc2DcIMuqGipgGPWhvkQYNX26/OkV1CnF5o7B6', utc_timestamp);
 
 insert into usuario (id, nome, email, senha, data_cadastro) values
-(2, 'João da Silva', 'joao.ger@algafood.com', '123', utc_timestamp),
+(2, 'João da Silva', 'joao.ger@algafood.com', '$2a$10$rGwQy1/TxoXgEcvc2DcIMuqGipgGPWhvkQYNX26/OkV1CnF5o7B6', utc_timestamp),
 (3, 'Maria Joaquina', 'maria.vnd@algafood.com', '123', utc_timestamp),
 (4, 'José Souza', 'jose.aux@algafood.com', '123', utc_timestamp),
 (5, 'Sebastião Martins', 'sebastiao.cad@algafood.com', '123', utc_timestamp);

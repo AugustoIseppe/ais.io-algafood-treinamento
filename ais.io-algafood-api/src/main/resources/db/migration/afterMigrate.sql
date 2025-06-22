@@ -16,6 +16,8 @@ delete from restaurante_usuario_responsavel;
 delete from pedido;
 delete from item_pedido;
 delete from foto_produto;
+delete from role;
+delete from user_role;
 
 set foreign_key_checks = 1;
 
@@ -170,6 +172,17 @@ values (1, '5c4be282-46cc-11f0-a919-74563c3a280c', 1, 1, 1, 1, '13634-503', 'Rua
 insert into item_pedido (id, pedido_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
 values (1, 1, 2, 2, 34.90, 69.80, 'Menos picante, por favor');
 
+
+INSERT INTO role (id, authority) VALUES (1, 'ROLE_USUARIO');
+INSERT INTO role (id, authority) VALUES (2, 'ROLE_ADMINISTRADOR');
+INSERT INTO role (id, authority) VALUES (3, 'ROLE_ANUNCIANTE');
+
+
+INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (1, 2);
+INSERT INTO user_role (user_id, role_id) VALUES (1, 3);
+INSERT INTO user_role (user_id, role_id) VALUES (2, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (2, 2);
 
 
 

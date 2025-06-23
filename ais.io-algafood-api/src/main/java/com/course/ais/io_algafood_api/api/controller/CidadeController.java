@@ -18,6 +18,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class CidadeController {
     @GetMapping
     @Operation(summary = "Lista todas as cidades",
             description = "Retorna uma lista de todas as cidades cadastradas")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ANUNCIANTE')")
     public CollectionModel<CidadeModel> listar() {
         List<Cidade> todasCidades = cidadeRepository.findAll();
         return cidadeModelAssembler.toCollectionModel(todasCidades);

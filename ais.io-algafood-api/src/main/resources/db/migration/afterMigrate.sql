@@ -16,8 +16,7 @@ delete from restaurante_usuario_responsavel;
 delete from pedido;
 delete from item_pedido;
 delete from foto_produto;
-delete from role;
-delete from user_role;
+
 
 set foreign_key_checks = 1;
 
@@ -111,16 +110,10 @@ INSERT IGNORE INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 1);
 INSERT IGNORE INTO grupo_permissao (grupo_id, permissao_id) VALUES (2, 3);
 
 -- Usuário
-INSERT IGNORE INTO usuario (id, nome, email, senha, data_cadastro) VALUES
-(1, 'Augusto Iseppe', 'balanaib92@gmail.com', '$2a$10$rGwQy1/TxoXgEcvc2DcIMuqGipgGPWhvkQYNX26/OkV1CnF5o7B6', utc_timestamp);
+INSERT IGNORE INTO usuario (id, nome, email, senha, data_cadastro, roles) VALUES
+(1, 'Augusto Iseppe', 'balanaib92@gmail.com', '$2a$10$rGwQy1/TxoXgEcvc2DcIMuqGipgGPWhvkQYNX26/OkV1CnF5o7B6', utc_timestamp, 'USER');
 
-insert into usuario (id, nome, email, senha, data_cadastro) values
-(2, 'João da Silva', 'joao.ger@algafood.com', '$2a$10$rGwQy1/TxoXgEcvc2DcIMuqGipgGPWhvkQYNX26/OkV1CnF5o7B6', utc_timestamp),
-(3, 'Maria Joaquina', 'maria.vnd@algafood.com', '123', utc_timestamp),
-(4, 'José Souza', 'jose.aux@algafood.com', '123', utc_timestamp),
-(5, 'Sebastião Martins', 'sebastiao.cad@algafood.com', '123', utc_timestamp);
-insert into usuario (id, nome, email, senha, data_cadastro) values
-(6, 'Manoel Lima', 'manoel.loja@gmail.com', '123', utc_timestamp);
+
 
 -- Usuário x Grupo
 INSERT IGNORE INTO usuario_grupo (usuario_id, grupo_id) VALUES (1, 1), (1, 2), (2, 2);
@@ -161,7 +154,7 @@ INSERT IGNORE INTO produto (id, nome, descricao, preco, ativo, restaurante_id) V
 (9, 'Tacos Mexicanos', 'Tacos recheados com carne moída e guacamole', 24.90, TRUE, 7),
 (10, 'Paella Valenciana', 'Arroz com frutos do mar e açafrão', 59.90, TRUE, 8);
 
-INSERT INTO restaurante_usuario_responsavel (restaurante_id, usuario_id) VALUES (1, 5), (3, 5);
+INSERT INTO restaurante_usuario_responsavel (restaurante_id, usuario_id) VALUES (1, 1), (3, 1);
 
 insert into pedido (id, codigo, restaurante_id, usuario_cliente_id, forma_pagamento_id, endereco_cidade_id, endereco_cep,
     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
@@ -173,16 +166,6 @@ insert into item_pedido (id, pedido_id, produto_id, quantidade, preco_unitario, 
 values (1, 1, 2, 2, 34.90, 69.80, 'Menos picante, por favor');
 
 
-INSERT INTO role (id, authority) VALUES (1, 'ROLE_USUARIO');
-INSERT INTO role (id, authority) VALUES (2, 'ROLE_ADMINISTRADOR');
-INSERT INTO role (id, authority) VALUES (3, 'ROLE_ANUNCIANTE');
-
-
-INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
-INSERT INTO user_role (user_id, role_id) VALUES (1, 2);
-INSERT INTO user_role (user_id, role_id) VALUES (1, 3);
-INSERT INTO user_role (user_id, role_id) VALUES (2, 1);
-INSERT INTO user_role (user_id, role_id) VALUES (2, 2);
 
 
 

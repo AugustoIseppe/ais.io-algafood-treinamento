@@ -4,16 +4,22 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.OffsetDateTime;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
 
+    
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +38,8 @@ public class Usuario {
     @Column(nullable = false, columnDefinition = "datetime")
     private OffsetDateTime dataCadastro;
 
-    @ManyToMany
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private UserRole roles;
 
     @ManyToMany
     @JoinTable(name = "usuario_grupo",
@@ -60,16 +63,46 @@ public class Usuario {
         return getGrupos().add(grupo);
     }
 
-    public void addRole(Role role) {
-        getRoles().add(role);
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        switch (this.roles) {
+            case ADMIN:
+                return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+            case ANUNCIANTE:
+                return List.of(new SimpleGrantedAuthority("ROLE_ANUNCIANTE"), new SimpleGrantedAuthority("ROLE_USER"));
+            case USER:
+            default:
+                return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
     }
 
-    public boolean hasRole(String roleName) {
-        for ( Role role : roles) {
-            if (role.getAuthority().equals(roleName)) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

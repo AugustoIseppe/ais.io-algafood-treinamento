@@ -30,9 +30,13 @@ public class CadastroUsuarioService {
 
         entityManager.detach(usuario);
 
-        Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
+        Usuario usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
 
-        if (usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario)) {
+//        if (usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario)) {
+//            throw new NegocioException("Já existe um usuário cadastrado com este e-mail.");
+//        }
+
+        if ( usuarioExistente != null && !usuarioExistente.equals(usuario)) {
             throw new NegocioException("Já existe um usuário cadastrado com este e-mail.");
         }
 

@@ -68,14 +68,32 @@ transacionais** - **Documentação automática com OpenAPI (Swagger)**
 O projeto segue **arquitetura em camadas**:
 
     src/
-     ├── controller/   -> Endpoints REST
-     ├── service/      -> Regras de negócio
-     ├── repository/   -> Persistência (Spring Data JPA)
-     ├── model/        -> Entidades do domínio
-     ├── dto/          -> Objetos de transferência de dados
-     ├── config/       -> Configurações gerais e segurança
-     └── exception/    -> Tratamento de erros
-
+     ├── api/  
+         └── assembler
+         └── controller
+         └── exceptionHandler
+         └── helpers
+         └── model
+             └── dto 
+     ├── core/ 
+         └── config
+         └── email
+         └── jackson
+         └── modelmapper
+         └── security
+         └── storage
+         └── validation
+         └── web
+     ├── domain/  
+         └── exceptions
+         └── model
+         └── repository
+         └── service
+     └── infrastructure/        
+         └── repository
+         └── service
+         └── spec
+         └── storage
 ------------------------------------------------------------------------
 
 ## 🛠 Pré-requisitos

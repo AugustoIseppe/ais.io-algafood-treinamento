@@ -178,20 +178,3 @@ Acesse a documentação interativa (Swagger UI) após subir o projeto:
 A API utiliza **JWT** para autenticação.\
 Fluxo básico: 1. Realizar login e receber token 2. Enviar token no
 header `Authorization: Bearer {token}` 3. Acessar endpoints protegidos
-
-------------------------------------------------------------------------
-
-## 🧪 Testes
-
-Rodar todos os testes:
-
-``` bash
-mvn test
-```
-
-------------------------------------------------------------------------
-
-## 📜 Licença
-
-Este projeto é distribuído sob a licença **MIT**. Consulte o arquivo
-`LICENSE` para mais detalhes.
